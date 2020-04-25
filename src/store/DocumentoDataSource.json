@@ -1,0 +1,8 @@
+[
+    { "text": "AIT - Auto Infração de Transito", "value": "AIT" },
+    { "text": "RRD - Recibo de Recolhimento de Documento", "value": "RRD" },
+    { "text": "TREV - Termo de recibo de entrega do veículo", "value": "TREV" },
+    { "text": "TRV - Termo de recolhimento de veículo", "value": "TRV" },
+    { "text": "TCA - Termo de Comprovação de Aucoolimia", "value": "TCA" },
+    { "text": "GRV - Guia Recolhimento de veículo (mais simpes)", "value": "GRV" }
+]

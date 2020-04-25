@@ -1,0 +1,6 @@
+[
+    { "text": "SIM", "value": true
+    },
+    { "text": "NAO", "value": false
+    }
+]

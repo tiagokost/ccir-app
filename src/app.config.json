@@ -1,0 +1,12 @@
+{
+    "appTitle": "SIMOVE"
+    ,"appSubtitle": "CCIR"
+    ,"logoOrgao": "logoPara.png"
+    ,"logoSigtrans": "logoSigtrans.png"
+    ,"AIT":true
+    ,"RRD":true
+    ,"TREV":false
+    ,"TRV":false
+    ,"TCA":false
+    ,"GRV":false
+}

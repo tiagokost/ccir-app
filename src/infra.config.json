@@ -1,0 +1,13 @@
+{
+    "environment": {
+        "label": "desenvolvimento",
+        "value": "development",
+        "color": "green"
+    },
+    "version": "0.0.1-alfa",
+    "linkVersion": "",
+    "api":{
+        "urlBase":"http://localhost:7200/api/v1/"
+    },
+    "loginTimeout": 1300 
+}
