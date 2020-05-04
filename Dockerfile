@@ -19,7 +19,7 @@
 #
 
 # Estagio 1 - Será responsavel em construir nossa aplicação
-FROM node:12.16.1-slim as node_react
+FROM node:13.1.0 as node_react
 
 LABEL version="2.0"
 LABEL description="CCIR - Sistema Gestão de Infração"
@@ -38,10 +38,11 @@ ENV PATH /app/node_modules/.bin:$PATH
 ## serve -s build -l 3000
 
 # update modules
-CMD ["npm", "update"]
-CMD ["npm", "run", "build"]
-CMD ["npm", "install -g serve"]
-CMD ["serve","-s build","-l 3000"]
+RUN npm install
+RUN npm install -g serve
+RUN npm run build
+RUM serve -s build -l 3000
+#CMD ["npm", "update"]
 
 
 # Estagio 2 - Será responsavel por expor a aplicação
