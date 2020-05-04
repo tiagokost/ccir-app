@@ -41,7 +41,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 RUN npm install
 RUN npm install -g serve
 RUN npm run build
-RUM serve -s build -l 3000
+RUN serve -s build -l 3000
 #CMD ["npm", "update"]
 
 
