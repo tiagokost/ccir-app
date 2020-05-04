@@ -27,16 +27,27 @@ LABEL maintainer="Raphael Pinheiro <raphael.pinheiro@engineti.com.br>"
 
 WORKDIR /app
 COPY ./ /app/
+# Adicionando `/app/node_modules/.bin` para o $PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
 ## INCLUIR PROCEDIMENTO DE BUILD PARA O REACT AQUI
+## npm update
+## cd ccirfrontendportal/
+## npm run build
+## npm install -g serve
+## serve -s build -l 3000
 
-
+# update modules
+CMD ["npm", "update"]
+CMD ["npm", "run", "build"]
+CMD ["npm", "install -g serve"]
+CMD ["serve","-s build","-l 3000"]
 
 
 # Estagio 2 - Será responsavel por expor a aplicação
 FROM nginx:1.13
 
-COPY --from=node_react /app/dist/??????? /usr/share/nginx/html
+COPY --from=node_react /app/build /usr/share/nginx/html
 COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 3000
