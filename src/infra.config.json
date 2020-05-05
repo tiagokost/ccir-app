@@ -1,8 +1,9 @@
 {
+    
     "environment": {
-        "label": "desenvolvimento",
-        "value": "development",
-        "color": "green"
+        "label": "homologação",
+        "value": "homologation",
+        "color": "yellow"
     },
     "version": "0.0.1-alfa",
     "linkVersion": "",
