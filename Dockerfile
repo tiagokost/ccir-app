@@ -47,9 +47,9 @@ RUN serve -s build -l 3000
 
 
 # Estagio 2 - Será responsavel por expor a aplicação
-#FROM nginx:1.13
+FROM nginx:1.13
 
-#COPY --from=node_react /app/build /usr/share/nginx/html
-#COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
+COPY --from=node_react /app/build /usr/share/nginx/html
+COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 3000
