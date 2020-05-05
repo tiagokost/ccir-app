@@ -41,10 +41,7 @@ RUN npm install
 RUN npm run build
 #RUN npm start
 RUN npm install -g serve
-#RUN npm run build
 RUN serve -s build -l 3000
-#CMD ["npm", "start"]
-
 
 # Estagio 2 - Será responsavel por expor a aplicação
 FROM nginx:1.13
