@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { TextBox, Form, Card, FormButtons, ComboBox, Button, Link, ButtonGroup, Image } from './../../shared/components/coreui'
 import Docview from '../docview'
+import Docdownload from '../docdownload'
 import AIT from './../../business/doc/AIT'
 import AitStore from './../../store/ait-store'
 import { Accordion, AccordionItem } from '../../shared/components/accordion'
@@ -11,6 +12,7 @@ export default class AitView extends Component {
     constructor(props) {
         super(props)
         const { numero, token } = this.props.match.params
+        const { pdf } = props
         this.state = {
             ait: undefined
             , numero: numero
@@ -18,6 +20,7 @@ export default class AitView extends Component {
             , disableConsult: token ? true : false
             , showDocview: false
             , showFormview: true
+            , pdf: pdf
         }
 
     }
@@ -26,7 +29,6 @@ export default class AitView extends Component {
         const { numero, token } = this.props.match.params
         show()
         if (token) {
-            console.log('token: ' + token)
             new AitStore().getAitFormToken(token)
                 .then(ait => {
                     if (!ait) {
@@ -54,16 +56,23 @@ export default class AitView extends Component {
             new AitStore().getAit(numero)
                 .then(ait => {
                     this.setState({ ait: ait })
+
                     close()
                 })
         }
         close()
-
     }
 
     render() {
-        const { numero, ait, showDocview, showFormview } = this.state
-
+        const { numero, ait, showDocview, showFormview, pdf } = this.state
+        if (pdf) {
+            return (
+                  
+                pdf ?
+                <Docdownload fileName={this.state.ait?.numero + "-ait"} ait={this.state.ait} /> :
+                <div></div>
+            )
+        }
         return (
             <>
                 <Progress />
@@ -78,18 +87,21 @@ export default class AitView extends Component {
                     <div className="col-lg-4 col-md-4 col-sm-0">
 
                         <div className="btn-group" role="group" aria-label="Basic example">
+
                             {!this.state.disableConsult &&
                                 <ButtonGroup text={"Nova busca"}
                                     onClick={() => {
                                         window.location.href = "../doc/search"
                                     }}></ButtonGroup>}
                             {(showFormview) ?
-                                <ButtonGroup text={"Imprimir"} onClick={() => {
-                                    this.setState({
-                                        showDocview: true
-                                        , showFormview: false
-                                    })
-                                }}></ButtonGroup>
+                                <>
+                                    <ButtonGroup text={"Imprimir"} onClick={() => {
+                                        this.setState({
+                                            showDocview: true
+                                            , showFormview: false
+                                        })
+                                    }}></ButtonGroup>
+                                </>
                                 : <ButtonGroup type={'danger'} text={"Fechar"} onClick={() => {
                                     this.setState({
                                         showDocview: false
@@ -97,9 +109,6 @@ export default class AitView extends Component {
                                     })
                                 }}></ButtonGroup>}
                         </div>
-
-
-
                     </div>
                 </div>
 
@@ -202,8 +211,8 @@ export default class AitView extends Component {
                             </AccordionItem>
 
                             {(ait?.tipificacoes && ait?.tipificacoes.map) &&
-                                ait?.tipificacoes.map(tipificacao =>
-                                    <AccordionItem id={"tipificacao_" + tipificacao?.idAitTipíficacaoInfracao}
+                                ait?.tipificacoes.map((tipificacao, index) =>
+                                    <AccordionItem key={index} id={"tipificacao_" + tipificacao?.idAitTipíficacaoInfracao?.toString()}
                                         text={"Tipificação - " + tipificacao?.tipificacao?.codigo}>
                                         <div className="row">
                                             <div className="col-lg-6 col-md-6 col-sm-0">
@@ -223,16 +232,18 @@ export default class AitView extends Component {
                                     </AccordionItem>
 
                                 )
-
                             }
 
                         </Accordion>
                     </>
                 }
-                {showDocview &&
+                {
+
+                    showDocview &&
                     <Docview>
                         <AIT obj={ait}></AIT>
-                    </Docview>}
+                    </Docview>
+                }
 
             </>
 

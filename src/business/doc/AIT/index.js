@@ -8,7 +8,7 @@ const AIT = ({ obj }) => {
     var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' }
     var today  = new Date()
     var dataImpr = today.toLocaleDateString("pt-BR", options)
-    if (!obj) return <Document></Document>
+    if (!obj) return <Document><div>Nenhum arquivo.</div></Document>
     return (
         <Document style={styles.document}>
             <Page size="A4" style={styles.body}>
@@ -142,14 +142,8 @@ const AIT = ({ obj }) => {
                                 expedindo a respectiva NOTIFICACAO DE PENALIDADE.
                             </Text>
                         </View>
-
-
-
-
-
                     </View>
                 </View>
-
                 <Text style={styles.pageNumber} render={({ pageNumber, totalPages }) => (
                     `pag. ${pageNumber} de ${totalPages} | impressão: ` + dataImpr  + `hs | ` +window.location.href 
                 )} fixed />

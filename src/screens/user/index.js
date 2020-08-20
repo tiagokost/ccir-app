@@ -22,8 +22,7 @@ export default class User extends Component {
         const { login, password, message } = this.state
 
         const user = getAuthUser()
-        console.log("user: " )
-        console.log(user)
+
         return (
             <Card
                 width={"medium"}

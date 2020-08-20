@@ -1,7 +1,7 @@
 import Ait from '../business/models/ait'
 import axios from 'axios'
 import infraConfig from './../infra.config'
-import { headers, getToken } from './../secury/auth'
+import { headers,headersMultiparts, getToken } from './../secury/auth'
 
 export default class AitStore {
 
@@ -9,6 +9,23 @@ export default class AitStore {
         return [
 
         ]
+    }
+
+    postAitDocPdf = async (numero, fileBlob) => {
+        const { api } = infraConfig
+        const { urlBase } = api
+        const data = new FormData()
+        data.append("file", fileBlob)
+        data.append("numero",numero)
+        //console.log(ait)
+        return axios.post(urlBase + 'doc/ait/save-pdf', 
+          data
+          ,headersMultiparts)
+            .then(async res => {
+               // console.log(res)
+                return res
+            })
+
     }
 
     getAit = async (number) => {

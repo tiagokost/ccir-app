@@ -54,7 +54,7 @@ export const profile = () => {
 }
 
 export const headers = { headers: { authorization: getToken() } }
-
+export const headersMultiparts = {  headers: {'Content-Type': 'multipart/form-data', authorization: getToken() } }
 export const authUser = async (login, password) => {
 
     const { api } = infraConfig

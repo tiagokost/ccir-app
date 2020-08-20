@@ -112,7 +112,7 @@ export const menuCondutor = [
     }
 ]
 
-export default () => [
+const Menu = [
     
     {
         "title": "Início",
@@ -134,5 +134,5 @@ export default () => [
         ]
     }]
 
-
+export default Menu
 

@@ -18,6 +18,7 @@ import Progress, { show,close	 } from './shared/components/progress'
 import AitView from './screens/ait'
 import AitStore from './store/ait-store'
 import Config from './screens/config'
+import Docdownload from './screens/docdownload'
 
 
 const PrivateRoute = ({ component: RouteComponent, ...rest }) => (
@@ -92,6 +93,19 @@ const Routes = ({ location, isOpen, children }) => (
 										label: 'AIT'
 									}]} />
 								<AitView {...props} />
+							</>
+						}></PrivateRoute>
+						<PrivateRoute exact path="/ait/pdf/:numero" component={(props) =>
+							<>
+								<Breadcrumb breadcrumb={[
+									{
+										label: 'Documento'
+										, href: '/ait/pdf'
+									}
+									, {
+										label: 'AIT'
+									}]} />
+								<AitView pdf={true} {...props} />
 							</>
 						}></PrivateRoute>
 						<PrivateRoute exact path="/doc/search" component={() =>

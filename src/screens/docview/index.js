@@ -3,8 +3,6 @@ import { PDFViewer, Document, Text, Page } from '@react-pdf/renderer'
 import AIT from '../../business/doc/AIT'
 import ReactPDF from '@react-pdf/renderer'
 
-
-
 export default class Docview extends Component {
     constructor(props) {
         super(props)
